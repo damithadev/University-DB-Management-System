@@ -117,3 +117,24 @@ CREATE TABLE studExamData (
 
 ALTER TABLE student
 ALTER COLUMN Pname VARCHAR(50) NULL;
+
+
+CREATE VIEW View_Student  
+AS
+SELECT name, age FROM Student  
+WHERE (age > 22)
+
+SELECT * FROM View_Student;
+
+
+CREATE FUNCTION Find_Name (@id INT)
+RETURNS VARCHAR(50)
+AS
+BEGIN
+    DECLARE @name VARCHAR(50)
+    SELECT @name = name FROM student WHERE studID = @id
+    RETURN @name
+END
+
+
+SELECT dbo.Find_Name(4) AS StudentName;
